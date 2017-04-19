@@ -3,6 +3,7 @@ var url = require('url');
 var path = require('path');
 var fs = require('fs');
 var zlib = require("zlib");
+var querystring = require('querystring');
 
 var mime = {
 
@@ -60,7 +61,7 @@ var config = {
 
 var server = http.createServer(function(request, response) {
 
-    var pathname = url.parse(request.url).pathname;
+    var pathname = url.parse(querystring.unescape(request.url)).pathname;
 
     var realPath = path.join("static", pathname);
 
